@@ -34,30 +34,19 @@ jobs:
       - name: Build APK
         run: flutter build apk --release --target lib/main_bike.dart
 
-      - name: Upload APK to Github Artifacts
-        uses: actions/upload-artifact@v1
+             #9 get those build to be available to download
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
         with:
-          name: app
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: Releases
+          path: |
+            build/app/outputs/flutter-apk/app-release.apk
+           
 
+        #10 create release with those builds 
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: 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
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: v1
-          release_name: Automatic Release
-          draft: false
-          prerelease: false
-
-      - name: Upload APK to Release
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: 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
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./app/build/outputs/apk/debug/app-debug.apk
-          asset_name: app-debug.apk
-          asset_content_type: application/zip
+          artifacts: "build/app/outputs/flutter-apk/app-release.apk,build/app/outputs/bundle/release/app-release.aab,build/ios_build.tar.gz"
+          tag: v1.0.${{ github.run_number }}
+          token: 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   
