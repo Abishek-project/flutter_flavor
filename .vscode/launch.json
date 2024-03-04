@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Bike-Flavor",
+            "program": "lib/main_bike.dart",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "Car-Flavor",
+            "program": "lib/main_car.dart",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}
