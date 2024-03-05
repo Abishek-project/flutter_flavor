@@ -48,7 +48,11 @@ jobs:
           token: ${{secrets.APP_CENTER_API_TOKEN}}
           file: build/app/outputs/flutter-apk/app-release.apk 
           debug: false
-          releaseNotes: "testing"
+          buildVersion: 2.0.0
+          buildNumber: 2
+          releaseNotes: "Release note"
+          gitReleaseNotes: true
+          
           
 
 
