@@ -49,7 +49,7 @@ jobs:
           group: testers
           file:  build/app/outputs/flutter-apk/app-release.apk
           notifyTesters: true
-          debug: false
+          debug: true
 
 
 
