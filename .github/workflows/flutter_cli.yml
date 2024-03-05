@@ -35,14 +35,16 @@ jobs:
       - name: build release
         run: flutter build apk --release --target lib/main_bike.dart
         
-      - name: Upload to AppCenter
-        uses: microsoft/appcenter-action@v4
+      - name: upload artefact to App Center
+        uses: wzieba/AppCenter-Github-Action@v1
         with:
-         app_secret: ${{ secrets.APP_CENTER_API_TOKEN }}
-         owner_name: abishekabi
-         app_name: Test App
-         file: build/app/outputs/flutter-apk/app-release.apk
-         distribute_groups: Testers
+         appName: abishekabi/Test App
+         token: ${{secrets.APP_CENTER_TOKEN}}
+         group: Testers
+         file: app/build/outputs/apk/release/app-release-unsigned.apk
+         notifyTesters: true
+         debug: false
+
 
 
 
