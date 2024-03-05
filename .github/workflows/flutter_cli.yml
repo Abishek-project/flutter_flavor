@@ -31,15 +31,25 @@ jobs:
 
       - name: Statically analyze Dart code
         run: flutter analyze .
-        
-      - name: build release
+
+      - name: Build APK
         run: flutter build apk --release --target lib/main_bike.dart
-        
-      - name: Install appcenter-cli
-        uses: charliealbright/appcenter-cli-action@v1.0.1
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
         with:
-          token: '${{secrets.APPCENTER_API_TOKEN}}'
-          command: 'appcenter help'
+          name: apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: upload artefact to App Center
+        uses: wzieba/AppCenter-Github-Action@v1
+        with:
+          appName: abishekabi/Test App
+          token: ${{secrets.APP_CENTER_TOKEN}}
+          group: Testers
+          file:  build/app/outputs/flutter-apk/app-release.apk
+          notifyTesters: true
+          debug: false
 
 
 
