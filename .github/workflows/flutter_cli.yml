@@ -41,11 +41,12 @@ jobs:
           name: apk
           path: build/app/outputs/flutter-apk/app-release.apk
 
-      - name: run any App Center CLI command
-        uses: avocaddo/App-Center-action@v1.0.2
+      - name: upload artifact to App Center
+        uses: wzieba/AppCenter-Github-Action@v1
         with:
-          command: appcenter distribute stores publish -s Beta -f build/app/outputs/flutter-apk/app-release.apk -r releaseNote -a user/app
+          appName: abishek/Flutter-Test
           token: ${{secrets.App_Center_Api}}
+          file: build/app/outputs/flutter-apk/app-release.apk
           debug: false
 
           
