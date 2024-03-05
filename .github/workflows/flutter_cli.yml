@@ -32,34 +32,17 @@ jobs:
       - name: Statically analyze Dart code
         run: flutter analyze .
         
-      - name: Build APK
-        run: flutter build apk --release --target lib/main_bike.dart
-
+      - name: build release
+        run: ./gradlew assembleRelease
         
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+      - name: upload artefact to App Center
+        uses: wzieba/AppCenter-Github-Action@v1
         with:
-          name: apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+         appName: abishekabi/Sample-App
+         token: ${{secrets.20c06101d7836d968b449f77857e16e1eed6b315}}
+         group: Testers
+         file: app/build/outputs/apk/release/app-release-unsigned.apk
+         notifyTesters: true
+         debug: false
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: V2.1
-          release_name: Testing Release 2
-          draft: false
-          prerelease: false
-
-      - name: Upload APK to Release
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path:  build/app/outputs/flutter-apk/app-release.apk
-          asset_name: app-debug.apk
-          asset_content_type: application/zip
+  
