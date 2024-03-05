@@ -44,11 +44,11 @@ jobs:
       - name: Upload to App Center
         run: |
           curl -X POST -H "Content-Type: application/json" \
-            -H "X-API-Token: ${{ secrets.App_Center_Api }}" \
+            -H "X-API-Token: ${{ secrets.API }}" \
             -d '{"file_path":"build/app/outputs/flutter-apk/app-release.apk"}' \
-            "https://api.appcenter.ms/v0.1/apps/abishekabi/Sample-Flutter/releases/upload"
+            "https://api.appcenter.ms/v0.1/apps/abishekabi/Check/releases/upload"
         env:
-          APP_CENTER_API_TOKEN: ${{ secrets.App_Center_Api}}
+          APP_CENTER_API_TOKEN: ${{ secrets.API}}
         
 
           
