@@ -38,10 +38,10 @@ jobs:
           path: |
             build/app/outputs/flutter-apk/app-release.apk
 
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
-          tag: v1.0.${{ github.run_number }}
-          token: ${{ secrets.GITHUB_TOKEN }}       
+      # - name: Create Release
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #     artifacts: "build/app/outputs/flutter-apk/app-release.apk"
+      #     tag: v1.0.${{ github.run_number }}
+      #     token: ${{ secrets.GITHUB_TOKEN }}       
     
