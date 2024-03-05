@@ -41,15 +41,13 @@ jobs:
           name: apk
           path: build/app/outputs/flutter-apk/app-release.apk
 
-      - name: Upload to App Center
-        run: |
-          curl -X POST -H "Content-Type: application/json" \
-            -H "X-API-Token: ${{ secrets.API }}" \
-            -d '{"file_path":"build/app/outputs/flutter-apk/app-release.apk"}' \
-            "https://api.appcenter.ms/v0.1/apps/abishekabi/Check/releases/upload"
-        env:
-          APP_CENTER_API_TOKEN: ${{ secrets.API}}
-        
+      - name: upload artefact to App Center
+        uses: wzieba/AppCenter-Github-Action@v1
+        with:
+         appName: abishekabi/Sample-Flutter
+         token: ${{secrets.APP_CENTER_TOKEN}}
+         file: build/app/outputs/flutter-apk/app-release.apk
+         debug: false
 
           
           
