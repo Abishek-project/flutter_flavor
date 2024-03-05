@@ -44,7 +44,7 @@ jobs:
       - name: AppCenter CLI Action
         uses: charliealbright/appcenter-cli-action@v1.0.1
         with:
-          token: ${{secrets.APPCENTER_API_TOKEN}}
+          token: ${{secrets.APP_CENTER_API_TOKEN}}
           file: build/app/outputs/flutter-apk/app-release.apk
           command: 'appcenter distribute release -f ${{inputs.file}} --app ${{inputs.name}} --group ${{inputs.group}}'
           
