@@ -39,11 +39,19 @@ jobs:
             build/app/outputs/flutter-apk/app-release.apk
            
         #10 create release with those builds 
-          # Create release with those builds
+        
       - name: Create Release
-        uses: ncipollo/release-action@v1
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.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}} # This token is provided by Actions, you do not need to create your own token
         with:
-          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
-          tag: "v1.0.${{ github.run_number }}"
-          token: "${{ secrets.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 }}"
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
 
