@@ -35,15 +35,14 @@ jobs:
       - name: build release
         run: flutter build apk --release --target lib/main_bike.dart
         
-      - name: upload artefact to App Center
-        uses: wzieba/AppCenter-Github-Action@v1
+      - name: Setup AppCenter CLI
+        runs-on: self-hosted
+        steps:
+      - name: Install appcenter-cli
+        uses: charliealbright/appcenter-cli-action@v1.0.1
         with:
-         appName: abishekabi/Test App
-         token: ${{secrets.APP_CENTER_TOKEN}}
-         group: Testers
-         file: app/build/outputs/apk/release/app-release-unsigned.apk
-         notifyTesters: true
-         debug: false
+          token: '${{secrets.APPCENTER_API_TOKEN}}'
+          command: 'appcenter hel
 
 
 
