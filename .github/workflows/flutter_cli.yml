@@ -46,7 +46,7 @@ jobs:
         with:
           token: ${{secrets.APPCENTER_API_TOKEN}}
           file: build/app/outputs/flutter-apk/app-release.apk
-          command: 'appcenter distribute release -f ${{inputs.file}} --app ${{inputs.name}} --group ${{inputs.group}}'
+          
 
 
 
