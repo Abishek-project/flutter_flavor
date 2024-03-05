@@ -33,17 +33,17 @@ jobs:
         run: flutter analyze .
         
       - name: build release
-        run: ./gradlew assembleRelease
+        run: flutter build apk --release --target lib/main_bike.dart
         
-      # - name: upload artefact to App Center
-      #   uses: abishekabi/AppCenter-Github-Action@v1
-      #   with:
-      #    appName: abishekabi/Sample-App
-      #    token:token: ${{ secrets.APP_CENTER_TOKEN }}
-      #    group: Testers
-      #    file: app/build/outputs/apk/release/app-release-unsigned.apk
-      #    notifyTesters: true
-      #    debug: false
+      - name: Upload to AppCenter
+        uses: microsoft/appcenter-action@v4
+        with:
+         app_secret: ${{ secrets.APP_CENTER_API_TOKEN }}
+         owner_name: abishekabi
+         app_name: Test App
+         file: build/app/outputs/flutter-apk/app-release.apk
+         distribute_groups: Testers
+
 
 
   
