@@ -39,14 +39,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-release-test.apk
 
       - name: upload artifact to App Center
         uses: wzieba/AppCenter-Github-Action@v1
         with:
           appName: abishekabi/Flutter_test
           token: ${{secrets.APP_CENTER_API_TOKEN}}
-          file: build/app/outputs/flutter-apk/app-release.apk 
+          file: build/app/outputs/flutter-apk/app-release-test.apk 
           debug: false
           buildVersion: 1.0.0
           buildNumber: 1
