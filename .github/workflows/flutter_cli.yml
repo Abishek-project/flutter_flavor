@@ -46,8 +46,10 @@ jobs:
         with:
           appName: abishekabi/Sample_App
           token: ${{secrets.APP_CENTER_TOKEN}}
+          group: testers
           file:  build/app/outputs/flutter-apk/app-release.apk
-          
+          notifyTesters: true
+          debug: false
 
 
 
