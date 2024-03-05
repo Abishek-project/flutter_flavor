@@ -41,12 +41,15 @@ jobs:
           name: apk
           path: build/app/outputs/flutter-apk/app-release.apk
 
-      - name: AppCenter CLI Action
-        uses: charliealbright/appcenter-cli-action@v1.0.1
+      - name: upload artefact to App Center
+        uses: wzieba/AppCenter-Github-Action@v1
         with:
+          appName: abishekabi/Sample-App
           token: ${{secrets.APP_CENTER_API_TOKEN}}
+          group: Testers
           file: build/app/outputs/flutter-apk/app-release.apk
-          command: 'appcenter distribute release -f ${{inputs.file}} --app ${{inputs.name}} --group ${{inputs.group}}'
+          notifyTesters: true
+          debug: false
           
 
 
