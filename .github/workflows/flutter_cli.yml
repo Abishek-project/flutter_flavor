@@ -47,7 +47,7 @@ jobs:
           appName: abishekabi/Flutter_test
           token: ${{secrets.APP_CENTER_API_TOKEN}}
           file: build/app/outputs/flutter-apk/app-release.apk 
-          debug: false
+          debug: true
 
           
           
