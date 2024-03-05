@@ -35,14 +35,11 @@ jobs:
       - name: build release
         run: flutter build apk --release --target lib/main_bike.dart
         
-      - name: Setup AppCenter CLI
-        runs-on: self-hosted
-        steps:
       - name: Install appcenter-cli
         uses: charliealbright/appcenter-cli-action@v1.0.1
         with:
           token: '${{secrets.APPCENTER_API_TOKEN}}'
-          command: 'appcenter hel
+          command: 'appcenter help'
 
 
 
