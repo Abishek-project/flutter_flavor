@@ -35,15 +35,15 @@ jobs:
       - name: build release
         run: ./gradlew assembleRelease
         
-      - name: upload artefact to App Center
-        uses: abishekabi/AppCenter-Github-Action@v1
-        with:
-         appName: abishekabi/Sample-App
-         token:token: ${{ secrets.APP_CENTER_TOKEN }}
-         group: Testers
-         file: app/build/outputs/apk/release/app-release-unsigned.apk
-         notifyTesters: true
-         debug: false
+      # - name: upload artefact to App Center
+      #   uses: abishekabi/AppCenter-Github-Action@v1
+      #   with:
+      #    appName: abishekabi/Sample-App
+      #    token:token: ${{ secrets.APP_CENTER_TOKEN }}
+      #    group: Testers
+      #    file: app/build/outputs/apk/release/app-release-unsigned.apk
+      #    notifyTesters: true
+      #    debug: false
 
 
   
