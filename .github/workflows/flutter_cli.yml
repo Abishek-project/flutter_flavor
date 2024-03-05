@@ -33,7 +33,8 @@ jobs:
         run: flutter analyze .
         
       - name: Build APK
-        run: flutter build apk --release   
+        run: flutter build apk --split-per-abi
+
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
