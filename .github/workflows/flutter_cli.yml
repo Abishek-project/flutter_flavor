@@ -39,7 +39,7 @@ jobs:
         uses: abishekabi/AppCenter-Github-Action@v1
         with:
          appName: abishekabi/Sample-App
-         token: ${{ secrets.20c06101d7836d968b449f77857e16e1eed6b315 }}
+         token:token: ${{ secrets.APP_CENTER_TOKEN }}
          group: Testers
          file: app/build/outputs/apk/release/app-release-unsigned.apk
          notifyTesters: true
