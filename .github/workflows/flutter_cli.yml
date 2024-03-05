@@ -33,7 +33,7 @@ jobs:
         run: flutter analyze .
         
       - name: Build APK
-        run: run: flutter build apk --release --target lib/main_bike.dart
+        run: flutter build apk --release --target lib/main_bike.dart
 
         
       - name: Upload Artifacts
