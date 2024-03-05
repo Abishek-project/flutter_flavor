@@ -42,12 +42,13 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
 
       - name: Upload to App Center
-        uses: ms/appcenter-cli@v2
-        with:
-          command: distribute release
-          tokens: ${{ secrets.App_Center_Api }}
-          app: Sample-Flutter
-          file: build/app/outputs/flutter-apk/app-release.apk  # Adjust the path based on your project structure
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+            -H "X-API-Token: ${{ secrets.App_Center_Api }}" \
+            -d '{"file_path":"build/app/outputs/flutter-apk/app-release.apk"}' \
+            "https://api.appcenter.ms/v0.1/apps/abishekabi/Sample-Flutter/releases/upload"
+        env:
+          APP_CENTER_API_TOKEN: ${{ secrets.App_Center_Api}}
         
 
           
