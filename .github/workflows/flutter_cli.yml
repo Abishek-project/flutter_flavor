@@ -43,8 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: v1.4
-          release_name: sample release 5
+          tag_name: v1.5
+          release_name: sample release 6
           body: |
             Changes in this Release
             - First Change
