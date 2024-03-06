@@ -41,15 +41,12 @@ jobs:
           name: apk
           path: build/app/outputs/flutter-apk/app-release.apk
 
-      - name: upload artefact to App Center
-        uses: wzieba/AppCenter-Github-Action@v1
+      - name: Distribute ipa to App Center
+        uses: akiojin/appcenter-distribute-github-action@v1
         with:
-          appName: wzieba/Sample-App
-          token: ${{secrets.APP_CENTER_TOKEN}}
-          group: Testers
-          file: build/app/outputs/flutter-apk/app-release.apk
-          notifyTesters: true
-          debug: false
+         token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+         path: build/app/outputs/flutter-apk/app-release.apk
+         app: /
           
           
 
