@@ -45,7 +45,7 @@ jobs:
         uses: wzieba/AppCenter-Github-Action@v1
         with:
          appName: abishek/Check
-         token: ${{secrets.APP_CENTER_TOKEN}}
+         token: ${{secrets.APP_CENTER}}
          file: build/app/outputs/flutter-apk/app-release.apk
          debug: false
 
