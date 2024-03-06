@@ -41,6 +41,9 @@ jobs:
           name: apk
           path: build/app/outputs/flutter-apk/app-release.apk
 
+      - name: Install Dependencies
+        run: npm install     
+
       - name: Distribute to AppCenter
         uses: familiohq/appcenter-distribute-action@master
         with:
