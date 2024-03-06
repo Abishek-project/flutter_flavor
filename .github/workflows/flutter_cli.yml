@@ -47,13 +47,13 @@ jobs:
         uses: akiojin/appcenter-distribute-github-action@v1
         with:
          token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-         build-number: ${{ github.run_number }}
+         build-number: "2"
          path: build/app/outputs/flutter-apk/app-release.apk
          app: abishekabi/check
          mandatory: true
          silent: false
          group: 'Tests'
-         release_notes: "<Release Notes>"
+         release_notes: "Sample release"
           
           
 
