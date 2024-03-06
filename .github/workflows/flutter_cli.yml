@@ -45,7 +45,7 @@ jobs:
         uses: devussy/AppCenter-Distribute-Github-Action@v1.0.3
         with:
          appName: devussy/Sample-App
-         token: ${{secrets.APP_CENTER_TOKEN}}
+         token: ${{secrets.APP_CENTER_API_TOKEN}}
          file: build/app/outputs/flutter-apk/app-release.apk
          debug: false
           
