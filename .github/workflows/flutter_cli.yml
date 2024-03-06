@@ -44,7 +44,8 @@ jobs:
       #     tar -czf ios_build.tar.gz ios   
 
       - name: Build and Package IPA
-        run: flutter build ipa --release --target lib/main_car.dart
+        run: flutter build ipa --release --target lib/main_car.dart --no-codesign -allowProvisioningUpdates
+
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
