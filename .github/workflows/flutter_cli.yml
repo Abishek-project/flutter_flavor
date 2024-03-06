@@ -36,7 +36,7 @@ jobs:
       #   run: flutter build apk --release --target lib/main_bike.dart
       - name: Build IPA
         run:
-          flutter build ipa --no-codesign
+           flutter build ipa --no-codesign --target lib/main_car.dart
           
       - name: Compress Archives and IPAs
         run: |
