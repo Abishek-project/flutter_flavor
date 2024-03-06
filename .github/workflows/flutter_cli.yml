@@ -40,8 +40,10 @@ jobs:
         with:
           name: apk
           path: build/app/outputs/flutter-apk/app-release.apk
-
-      - name: Distribute ipa to App Center
+      - name: Install App Center CLI
+        run: npm install -g appcenter-cli
+        
+      - name: Distribute apk to App Center
         uses: akiojin/appcenter-distribute-github-action@v1
         with:
          token: ${{secrets.APPCENTER_ACCESS_TOKEN }}
