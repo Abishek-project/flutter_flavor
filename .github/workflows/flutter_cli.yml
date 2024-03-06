@@ -52,6 +52,7 @@ jobs:
          app: abishekabi/check
          mandatory: true
          silent: false
+         group: 'Tests'
          release_notes: "<Release Notes>"
           
           
