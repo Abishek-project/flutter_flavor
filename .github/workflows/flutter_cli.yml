@@ -34,20 +34,23 @@ jobs:
 
       # - name: Build APK
       #   run: flutter build apk --release --target lib/main_bike.dart
-      - name: Build IPA
-        run:
-           flutter build ipa --no-codesign --target lib/main_car.dart
+      # - name: Build IPA
+      #   run:
+      #      flutter build ipa --no-codesign --target lib/main_car.dart
           
-      - name: Compress Archives and IPAs
-        run: |
-          cd build
-          tar -czf ios_build.tar.gz ios   
-          
+      # - name: Compress Archives and IPAs
+      #   run: |
+      #     cd build
+      #     tar -czf ios_build.tar.gz ios   
+
+      - name: Build and Package IPA
+        run: flutter build ipa --release
+        
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: apk
-          path: build/ios_build.tar.gz    
+          name: ipa
+          path: build/ios/Runner.ipa   
       # - name: Install App Center CLI
       #   run: npm install -g appcenter-cli
         
