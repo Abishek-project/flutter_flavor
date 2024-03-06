@@ -32,27 +32,35 @@ jobs:
       - name: Statically analyze Dart code
         run: flutter analyze .
 
-      - name: Build APK
-        run: flutter build apk --release --target lib/main_bike.dart
-
+      # - name: Build APK
+      #   run: flutter build apk --release --target lib/main_bike.dart
+      - name: Build IPA
+        run:
+          flutter build ipa --no-codesign
+          
+      - name: Compress Archives and IPAs
+        run: |
+          cd build
+          tar -czf ios_build.tar.gz ios   
+          
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: apk
-          path: build/app/outputs/flutter-apk/app-release.apk
-      - name: Install App Center CLI
-        run: npm install -g appcenter-cli
+          path: build/ios_build.tar.gz    
+      # - name: Install App Center CLI
+      #   run: npm install -g appcenter-cli
         
-      - name: Distribute apk to App Center
-        uses: akiojin/appcenter-distribute-github-action@v1
-        with:
-         token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-         path: build/app/outputs/flutter-apk/app-release.apk
-         app: abishekabi/Flutter
-         mandatory: true
-         silent: false
-         group: 'Tests'
-         release_notes: "Test release"
+      # - name: Distribute apk to App Center
+      #   uses: akiojin/appcenter-distribute-github-action@v1
+      #   with:
+      #    token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+      #    path: build/app/outputs/flutter-apk/app-release.apk
+      #    app: abishekabi/Flutter
+      #    mandatory: true
+      #    silent: false
+      #    group: 'Tests'
+      #    release_notes: "Test release"
           
           
 
