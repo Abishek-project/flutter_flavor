@@ -48,7 +48,7 @@ jobs:
         with:
          token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
          path: build/app/outputs/flutter-apk/app-release.apk
-         app: abishekabi/check
+         app: abishekabi/Flutter
          mandatory: true
          silent: false
          group: 'Tests'
