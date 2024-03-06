@@ -52,7 +52,7 @@ jobs:
          mandatory: true
          silent: false
          group: 'Tests'
-         release_notes: "Sample release"
+         release_notes: "Test release"
           
           
 
