@@ -41,16 +41,13 @@ jobs:
           name: apk
           path: build/app/outputs/flutter-apk/app-release.apk
 
-      - name: Install Dependencies
-        run: npm install     
-
-      - name: Distribute to AppCenter
-        uses: familiohq/appcenter-distribute-action@master
+      - name: upload artefact to App Center
+        uses: wzieba/AppCenter-Github-Action@v1.0.0
         with:
-          args: stores publish  --file build/app/outputs/flutter-apk/app-release.apk --store Test --app abishekabi/check --release-notes "Some note."
-        env:
-          APPCENTER_ACCESS_TOKEN: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-          
+         appName: ${{secrets.APPCENTER_ORGANIZATION}}/${{secrets.APPCENTER_APP}}
+         token: ${{secrets.APPCENTER_API_TOKEN}}
+         group: Internal
+         file: build/app/outputs/flutter-apk/app-release.apk
           
           
           
