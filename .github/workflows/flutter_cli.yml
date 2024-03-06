@@ -46,9 +46,13 @@ jobs:
       - name: Distribute apk to App Center
         uses: akiojin/appcenter-distribute-github-action@v1
         with:
-         token: ${{secrets.APPCENTER_ACCESS_TOKEN }}
+         token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+         build-number: ${{ github.run_number }}
          path: build/app/outputs/flutter-apk/app-release.apk
          app: abishekabi/check
+         mandatory: true
+         silent: false
+         release_notes: "<Release Notes>"
           
           
 
