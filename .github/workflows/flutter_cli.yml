@@ -46,9 +46,7 @@ jobs:
         with:
          appName: devussy/Sample-App
          token: ${{secrets.APP_CENTER_TOKEN}}
-         group: Testers
          file: build/app/outputs/flutter-apk/app-release.apk
-         notifyTesters: true
          debug: false
           
           
