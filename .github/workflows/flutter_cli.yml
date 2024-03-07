@@ -38,21 +38,19 @@ jobs:
       #   run:
       #      flutter build ipa --no-codesign --target lib/main_car.dart
           
-      - name: Build iOS App
+      - name: Build iOS release
+        run: flutter build ios --release
+
+      - name: Export IPA
         run: |
-          flutter build ios --target lib/main_car.dart --profile --no-codesign
-          cd build/ios/iphoneos
-          mkdir Payload
-          cd Payload
-          ln -s ../Runner.app
-          cd ..
-          zip -r app.ipa Payload
+         cd build/ios/iphoneos
+         xcodebuild -exportArchive -archivePath Runner.xcarchive -exportPath Runner -exportOptionsPlist ExportOptions.plist
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ipa
-          path: build/ios/iphoneos/app.ipa 
+          path: build/ios/iphoneos/Runner.ipa
       # - name: Install App Center CLI
       #   run: npm install -g appcenter-cli
         
