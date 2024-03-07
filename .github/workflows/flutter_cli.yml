@@ -65,13 +65,11 @@ jobs:
         run: flutter build ios --release --target lib/main_car.dart
 
       - name: Create IPA
-        run: |
-          xcodebuild -exportArchive -archivePath build/ios/Runner.xcarchive -exportPath build/ios/Runner.ipa -exportOptionsPlist ExportOptions.plist
-
-      - name: Upload to Artifacts
-        uses: actions/upload-artifact@v2
+        run: xcodebuild -workspace ios/Runner.xcworkspace -scheme Runner -sdk iphoneos -configuration Release -archivePath build/ios/Runner.xcarchive archive -quiet
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
         with:
-          name: ios-artifacts
+          name: ipa
           path: build/ios
 
       # - name: Install App Center CLI
