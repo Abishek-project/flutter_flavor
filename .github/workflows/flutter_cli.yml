@@ -88,7 +88,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app
-          path: build/ios/app.ipa
+          path: $RUNNER_TEMP/build/*.ipa
           # you can also archive the entire directory 
           # path: ${{ runner.temp }}/build
          
