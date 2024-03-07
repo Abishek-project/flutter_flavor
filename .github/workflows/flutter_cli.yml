@@ -86,11 +86,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app
-          path: ${{ runner.temp }}/build/I\ am\ app.ipa
+          path: build/ios/app.ipa
           # you can also archive the entire directory 
           # path: ${{ runner.temp }}/build
-          retention-days: 3   
-
+         
       # - name: Upload Artifacts
       #   uses: actions/upload-artifact@v4
       #   with:
