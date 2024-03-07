@@ -70,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ipa
-          path: build/ios/ipa/Runner.ipa
+          path: build/ios/Runner.xcarchive/Products/Applications/Runner.ipa
       # - name: Install App Center CLI
       #   run: npm install -g appcenter-cli
         
