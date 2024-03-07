@@ -66,6 +66,7 @@ jobs:
 
       - name: build archive
         run: |
+         cd ios
          xcodebuild -scheme "Runner" \
          -archivePath $GITHUB_WORKSPACE/runner.xcarchive \
          -sdk iphoneos \
