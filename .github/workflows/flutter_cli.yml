@@ -66,8 +66,9 @@ jobs:
 
       - name: Create IPA
         run: xcodebuild -workspace ios/Runner.xcworkspace -scheme Runner -sdk iphoneos -configuration Release -archivePath build/ios/Runner.xcarchive archive -quiet
+         ls -R build/ios/Runner.xcarchive  
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ipa
           path: ./**.ipa
