@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4 
@@ -32,27 +32,39 @@ jobs:
       - name: Statically analyze Dart code
         run: flutter analyze .
 
-      - name: Build APK
-        run: flutter build apk --release --target lib/main_bike.dart
+      # - name: Build APK
+      #   run: flutter build apk --release --target lib/main_bike.dart
+      # - name: Build IPA
+      #   run:
+      #      flutter build ipa --no-codesign --target lib/main_car.dart
+          
+      - name: Build iOS release
+        run: flutter build ios --release --target lib/main_car.dart
+      
 
+      - name: Export IPA
+        run: |
+         cd build/ios/iphoneos
+         xcodebuild -exportArchive -archivePath Runner.xcarchive -exportPath Runner -exportOptionsPlist ExportOptions.plist
+        
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: apk
-          path: build/app/outputs/flutter-apk/app-release.apk
-      - name: Install App Center CLI
-        run: npm install -g appcenter-cli
+          name: ipa
+          path: build/ios/iphoneos/Runner.ipa
+      # - name: Install App Center CLI
+      #   run: npm install -g appcenter-cli
         
-      - name: Distribute apk to App Center
-        uses: akiojin/appcenter-distribute-github-action@v1
-        with:
-         token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-         path: build/app/outputs/flutter-apk/app-release.apk
-         app: abishekabi/check
-         mandatory: true
-         silent: false
-         group: 'Tests'
-         release_notes: "Sample release"
+      # - name: Distribute apk to App Center
+      #   uses: akiojin/appcenter-distribute-github-action@v1
+      #   with:
+      #    token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+      #    path: build/app/outputs/flutter-apk/app-release.apk
+      #    app: abishekabi/Flutter
+      #    mandatory: true
+      #    silent: false
+      #    group: 'Tests'
+      #    release_notes: "Test release"
           
           
 
