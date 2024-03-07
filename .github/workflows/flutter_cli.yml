@@ -64,18 +64,19 @@ jobs:
       - name: Build Flutter app for iOS
         run: flutter build ios --release --target lib/main_car.dart
 
-      - name: Create IPA
-        run: xcodebuild -workspace ios/Runner.xcworkspace -scheme Runner -sdk iphoneos -configuration Release -archivePath build/ios/Runner.xcarchive archive -quiet
-
-      - name: Compress Archives and IPAs
+      - name: Build IPA
         run: |
-          cd build
-          tar -czf ios_build.tar.gz ios     
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+         xcodebuild -workspace ios/Runner.xcworkspace -scheme Runner -sdk iphoneos -configuration Release -archivePath build/ios/Runner.xcarchive archive -quiet
+ 
+      - name: Archive IPA
+        run: |
+         xcodebuild -exportArchive -archivePath build/ios/Runner.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath build/ios
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v2
         with:
-          name: ipa
-          path:  build/ios_build.tar.gz  
+         name: ios-artifact
+         path: build/ios/*.ipa
       # - name: Install App Center CLI
       #   run: npm install -g appcenter-cli
         
