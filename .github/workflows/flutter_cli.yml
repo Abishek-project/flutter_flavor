@@ -78,19 +78,23 @@ jobs:
          exit 1
          fi
   
-    
+      - name: Unzip downloaded artifact
+        run: |
+         unzip /Users/runner/work/flutter_flavor/flutter_flavor/sample_flavor_test.ipa -d /Users/runner/work/flutter_flavor/flutter_flavor/app_ipa
+         working-directory: /Users/runner/work/flutter_flavor/flutter_flavor/
+
 
       - name: Upload ipa
         uses: actions/upload-artifact@v4
         with:
          name: Upload ipa
-         path: /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
+         path: /Users/runner/work/flutter_flavor/flutter_flavor/app_ipa
 
      
-      - name: Get release-ipa from artifacts
-        uses: actions/download-artifact@v4
-        with:
-         name: Upload ipa
+      # - name: Get release-ipa from artifacts
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #    name: Upload ipa
         
 
       - name: Install App Center CLI
@@ -100,7 +104,7 @@ jobs:
         uses: akiojin/appcenter-distribute-github-action@v1
         with:
          token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-         path: /Users/runner/work/flutter_flavor/flutter_flavor/sample_flavor_test.ipa
+         path: /Users/runner/work/flutter_flavor/flutter_flavor/app_ipa
          app: abishekabi/Ios
          mandatory: true
          silent: false
