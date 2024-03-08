@@ -59,7 +59,8 @@ jobs:
 
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles          
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles  
+          
       - name: Export Options file
         env:
          EXPORT_OPTIONS_PLIST: ${{ secrets.EXPORT_OPTIONS_PLIST }}
@@ -76,8 +77,7 @@ jobs:
          echo "Error: $EXPORT_OPTS_PATH does not exist."
          exit 1
          fi
-      - run: unzip Upload ipa.zip
-     
+  
     
 
       - name: Upload ipa
