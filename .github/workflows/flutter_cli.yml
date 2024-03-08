@@ -76,31 +76,33 @@ jobs:
          echo "Error: $EXPORT_OPTS_PATH does not exist."
          exit 1
          fi
-
+      - run: unzip Upload ipa.zip
      
     
 
-      - name: Upload Unzipped IPA
+      - name: Upload ipa
         uses: actions/upload-artifact@v4
         with:
          name: Upload ipa
          path: /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
 
+      - run: unzip Upload ipa.zip   
+
         
 
-      - name: Install App Center CLI
-        run: npm install -g appcenter-cli
+      # - name: Install App Center CLI
+      #   run: npm install -g appcenter-cli
         
-      - name: Distribute apk to App Center
-        uses: akiojin/appcenter-distribute-github-action@v1
-        with:
-         token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-         path:  /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/unzipped_ipa
-         app: abishekabi/Flutter
-         mandatory: true
-         silent: false
-         group: 'Tests'
-         release_notes: "Test release"
+      # - name: Distribute apk to App Center
+      #   uses: akiojin/appcenter-distribute-github-action@v1
+      #   with:
+      #    token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+      #    path:  /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/unzipped_ipa
+      #    app: abishekabi/Flutter
+      #    mandatory: true
+      #    silent: false
+      #    group: 'Tests'
+      #    release_notes: "Test release"
           
           
 
