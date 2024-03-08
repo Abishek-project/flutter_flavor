@@ -80,7 +80,8 @@ jobs:
   
       - name: Unzip downloaded artifact
         run: |
-         unzip /Users/runner/work/flutter_flavor/flutter_flavor/sample_flavor_test.ipa -d /Users/runner/work/flutter_flavor/flutter_flavor/app_ipa
+         unzip /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
+         -d /Users/runner/work/flutter_flavor/flutter_flavor/app_ipa
          working-directory: /Users/runner/work/flutter_flavor/flutter_flavor/
 
 
