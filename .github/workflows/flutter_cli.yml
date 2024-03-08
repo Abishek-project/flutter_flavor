@@ -101,7 +101,7 @@ jobs:
         with:
          token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
          path: /Users/runner/work/flutter_flavor/flutter_flavor/sample_flavor_test.ipa
-         app: abishekabi/Flutter
+         app: abishekabi/Ios
          mandatory: true
          silent: false
          group: 'Tests'
