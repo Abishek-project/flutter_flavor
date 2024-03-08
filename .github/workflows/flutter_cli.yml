@@ -78,16 +78,13 @@ jobs:
          fi
 
      
-      - name: Unzip IPA
-        run: |
-         unzip /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa -d /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/unzipped_ipa
-         working-directory: /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/
+    
 
       - name: Upload Unzipped IPA
         uses: actions/upload-artifact@v4
         with:
          name: Upload ipa
-         path: /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/unzipped_ipa
+         path: /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
 
         
 
