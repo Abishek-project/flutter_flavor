@@ -74,7 +74,7 @@ jobs:
         with:
          name: release-ipa
          # Path to the release files
-         path: build/ios/ipa/*.ipa
+         path: /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/archive/Runner.xcarchive
 
       # - name: Install App Center CLI
       #   run: npm install -g appcenter-cli
