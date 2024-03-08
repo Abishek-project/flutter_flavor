@@ -86,8 +86,11 @@ jobs:
          name: Upload ipa
          path: /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
 
-      - run: unzip Upload ipa.zip   
-
+     
+      - name: Get release-ipa from artifacts
+        uses: actions/download-artifact@v4
+        with:
+         name: Upload ipa
         
 
       # - name: Install App Center CLI
