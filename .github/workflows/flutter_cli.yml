@@ -41,40 +41,40 @@ jobs:
     name: Build Flutter (Android)
     needs: [flutter_test]
     runs-on: ubuntu-latest
-      steps:
-       - name: Checkout Repository
+    steps:
+      - name: Checkout Repository
         uses: actions/checkout@v4 
 
-       - name: Set Up Java
+      - name: Set Up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'oracle'
           java-version: '17'   
 
-       - name: Set Up Flutter
+      - name: Set Up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'   
 
-       - run: flutter clean
+      - run: flutter clean
 
-       - name: Get Flutter dependencies
-         run: flutter pub get
+      - name: Get Flutter dependencies
+        run: flutter pub get
 
     
-       - name: Build APK
-         run: flutter build apk --release --target lib/main_car.dart
+      - name: Build APK
+        run: flutter build apk --release --target lib/main_car.dart
 
-       - name: Upload Artifacts
-         uses: actions/upload-artifact@v4
-         with:
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
           name: apk
           path: build/app/outputs/flutter-apk/app-release.apk
           
-       - name: Install App Center CLI
+      - name: Install App Center CLI
         run: npm install -g appcenter-cli
 
-       - name: Distribute apk to App Center
+      - name: Distribute apk to App Center
         uses: akiojin/appcenter-distribute-github-action@v1
         with:
          token: ${{ secrets.APPCENTER_ANDROID_TOKEN }}
