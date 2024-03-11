@@ -6,8 +6,9 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: macos-latest
+  flutter_test:
+    name: Run flutter test and analyze
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4 
@@ -22,15 +23,92 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'    
-
+      
       - name: Get Flutter dependencies
         run: flutter pub get
 
-      # - name: Check for formatting issues
-      #   run: dart format --set-exit-if-changed .
+      - name: Check for formatting issues
+        run: dart format --set-exit-if-changed .
 
-      # - name: Statically analyze Dart code
-      #   run: flutter analyze .
+      - name: Statically analyze Dart code
+        run: flutter analyze .
+
+      # -  name: Run Test
+      #    run :flutter test
+
+
+  build_android:  
+    name: Build Flutter (Android)
+    needs: [flutter_test]
+    runs-on: ubuntu-latest
+      steps:
+       - name: Checkout Repository
+        uses: actions/checkout@v4 
+
+       - name: Set Up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'oracle'
+          java-version: '17'   
+
+       - name: Set Up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'   
+
+       - run: flutter clean
+
+       - name: Get Flutter dependencies
+         run: flutter pub get
+
+    
+       - name: Build APK
+         run: flutter build apk --release --target lib/main_car.dart
+
+       - name: Upload Artifacts
+         uses: actions/upload-artifact@v4
+         with:
+          name: apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          
+       - name: Install App Center CLI
+        run: npm install -g appcenter-cli
+
+       - name: Distribute apk to App Center
+        uses: akiojin/appcenter-distribute-github-action@v1
+        with:
+         token: ${{ secrets.APPCENTER_ANDROID_TOKEN }}
+         path: build/app/outputs/flutter-apk/app-release.apk
+         app: abishekabi/Flutter-Android
+         mandatory: true
+         silent: false
+         group: 'Tests'
+         release_notes: "Test release one"
+
+
+  build_ios:
+     name: Build Flutter (iOS)
+     needs: [flutter_test]
+     runs-on: macos-latest
+     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4 
+
+      - name: Set Up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'oracle'
+          java-version: '17'   
+
+      - name: Set Up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable' 
+
+      - run: flutter clean
+
+      - name: Get Flutter dependencies
+        run: flutter pub get
 
       - name: Install the Apple certificate and provisioning profile
         env:
@@ -77,7 +155,6 @@ jobs:
          echo "Error: $EXPORT_OPTS_PATH does not exist."
          exit 1
          fi
-  
     
 
       - name: Upload ipa
@@ -96,27 +173,18 @@ jobs:
       - name: Install App Center CLI
         run: npm install -g appcenter-cli
         
-      - name: Distribute apk to App Center
+      - name: Distribute ipa to App Center
         uses: akiojin/appcenter-distribute-github-action@v1
         with:
-         token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+         token: ${{secrets.APPCENTER_IOS_TOKEN }}
          path: /Users/runner/work/flutter_flavor/flutter_flavor/sample_flavor_test.ipa
-         app: abishekabi/Ios
+         app: abishekabi/FLUTTER-IOS
          mandatory: true
          silent: false
          group: 'Tests'
-         release_notes: "Test release two"
-          
-          
-
-
-
-
-  
-
+         release_notes: "Test release one"
           
 
 
 
 
-  
