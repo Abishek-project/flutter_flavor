@@ -176,6 +176,20 @@ jobs:
          name: Upload ipa
          path: /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
 
+
+      - name: Upload IPA to GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+         artifacts: /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
+         tag: v2.0.0
+         name: Release v2.0.0
+         token: ${{ secrets.GITHUB_TOKEN }}
+         body: |
+           - Added feature X
+           - Fixed bug Y
+           - Improved performance in module Z  
+
+   
      
       - name: Get release-ipa from artifacts
         uses: actions/download-artifact@v4
