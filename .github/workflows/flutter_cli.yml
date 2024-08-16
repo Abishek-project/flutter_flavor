@@ -199,7 +199,8 @@ jobs:
       - name: Download IPA Artifact
         uses: actions/download-artifact@v4
         with:
-          name: ipa
+          name: Upload ipa
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
