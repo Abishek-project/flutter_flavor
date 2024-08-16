@@ -70,20 +70,29 @@ jobs:
         with:
           name: apk
           path: build/app/outputs/flutter-apk/app-release.apk
-          
-      - name: Install App Center CLI
-        run: npm install -g appcenter-cli
 
-      - name: Distribute apk to App Center
-        uses: akiojin/appcenter-distribute-github-action@v1
+
+      - name: Upload APK to GitHub Release
+        uses: ncipollo/release-action@v1
         with:
-         token: ${{ secrets.APPCENTER_ANDROID_TOKEN }}
-         path: build/app/outputs/flutter-apk/app-release.apk
-         app: abishekabi/Flutter-Android
-         mandatory: true
-         silent: false
-         group: 'Tests'
-         release_notes: "Test release one"
+         artifacts: build/app/outputs/flutter-apk/app-release.apk
+         tag: ${{ github.ref }}
+         name: Release ${ github.ref_name }
+         token: ${{ secrets.GITHUB_TOKEN }}
+          
+      # - name: Install App Center CLI
+      #   run: npm install -g appcenter-cli
+
+      # - name: Distribute apk to App Center
+      #   uses: akiojin/appcenter-distribute-github-action@v1
+      #   with:
+      #    token: ${{ secrets.APPCENTER_ANDROID_TOKEN }}
+      #    path: build/app/outputs/flutter-apk/app-release.apk
+      #    app: abishekabi/Flutter-Android
+      #    mandatory: true
+      #    silent: false
+      #    group: 'Tests'
+      #    release_notes: "Test release one"
 
 
   build_ios:
@@ -170,19 +179,19 @@ jobs:
          name: Upload ipa
         
 
-      - name: Install App Center CLI
-        run: npm install -g appcenter-cli
+      # - name: Install App Center CLI
+      #   run: npm install -g appcenter-cli
         
-      - name: Distribute ipa to App Center
-        uses: akiojin/appcenter-distribute-github-action@v1
-        with:
-         token: ${{secrets.APPCENTER_IOS_TOKEN }}
-         path: /Users/runner/work/flutter_flavor/flutter_flavor/sample_flavor_test.ipa
-         app: abishekabi/FLUTTER-IOS
-         mandatory: true
-         silent: false
-         group: 'Tests'
-         release_notes: "Test release one"
+      # - name: Distribute ipa to App Center
+      #   uses: akiojin/appcenter-distribute-github-action@v1
+      #   with:
+      #    token: ${{secrets.APPCENTER_IOS_TOKEN }}
+      #    path: /Users/runner/work/flutter_flavor/flutter_flavor/sample_flavor_test.ipa
+      #    app: abishekabi/FLUTTER-IOS
+      #    mandatory: true
+      #    silent: false
+      #    group: 'Tests'
+      #    release_notes: "Test release one"
           
 
 
