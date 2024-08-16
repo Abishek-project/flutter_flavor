@@ -180,9 +180,11 @@ jobs:
       - name: Upload IPA to GitHub Release
         uses: ncipollo/release-action@v1
         with:
-         artifacts: build/app/outputs/flutter-apk/app-release.apk, /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
-         tag: v2.2.0
-         name: Release v2.2.0
+         artifacts: |
+           build/app/outputs/flutter-apk/app-release.apk
+           /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
+         tag: v2.2.1
+         name: Release v2.2.1
          token: ${{ secrets.GITHUB_TOKEN }}
          body: |
            - Added feature X
