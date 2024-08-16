@@ -197,8 +197,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Actions provide this token, you do not need to create your own token
         with:
-          tag_name: v1.3.0
-          release_name: Release v1.3.0
+          tag_name: v1.3.1
+          release_name: Release v1.3.1
           body: |
             Changes in this Release
             - First Change
@@ -208,17 +208,17 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path:  build/app/outputs/flutter-apk/app-release.apk
+          asset_path: build/app/outputs/flutter-apk/app-release.apk
           asset_name: app-release.apk
-          # asset_content_type: application/vnd.android.package-archive
+          asset_content_type: application/vnd.android.package-archive
 
       - name: Upload IPA
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path:  /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
+          asset_path: /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
           asset_name: Runner.app
-          # asset_content_type: application/octet-stream      
+          asset_content_type: application/octet-stream      
      
       # - name: Get release-ipa from artifacts
       #   uses: actions/download-artifact@v4
