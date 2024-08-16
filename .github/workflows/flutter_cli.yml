@@ -189,8 +189,17 @@ jobs:
       #    body: |
       #      - Added feature X
       #      - Fixed bug Y
-      #      - Improved performance in module Z  
+      #      - Improved performance in module Z 
+      
+      - name: Download APK Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: apk
 
+      - name: Download IPA Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ipa
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -208,7 +217,7 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/app/outputs/flutter-apk/app-release.apk
+          asset_path: ./build/app/outputs/flutter-apk/app-release.apk
           asset_name: app-release.apk
           asset_content_type: application/vnd.android.package-archive
 
@@ -216,7 +225,7 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
+          asset_path: ./Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
           asset_name: Runner.app
           asset_content_type: application/octet-stream      
      
