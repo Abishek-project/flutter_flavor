@@ -76,8 +76,8 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
          artifacts: build/app/outputs/flutter-apk/app-release.apk
-         tag: ${{ github.ref }}
-         name: Release ${ github.ref_name }
+         tag: ${{ github.ref_name }}
+         name: Release ${{ github.ref_name }}
          token: ${{ secrets.GITHUB_TOKEN }}
           
       # - name: Install App Center CLI
