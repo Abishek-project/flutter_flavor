@@ -72,17 +72,17 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
 
 
-      - name: Upload APK to GitHub Release
-        uses: ncipollo/release-action@v1
-        with:
-         artifacts: build/app/outputs/flutter-apk/app-release.apk
-         tag: v2.4.0
-         name: Release v2.4.0
-         token: ${{ secrets.GITHUB_TOKEN }}
-         body: |
-           - Added feature X
-           - Fixed bug Y
-           - Improved performance in module Z 
+      # - name: Upload APK to GitHub Release
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #    artifacts: build/app/outputs/flutter-apk/app-release.apk
+      #    tag: v2.4.0
+      #    name: Release v2.4.0
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #    body: |
+      #      - Added feature X
+      #      - Fixed bug Y
+      #      - Improved performance in module Z 
           
       # - name: Install App Center CLI
       #   run: npm install -g appcenter-cli
@@ -176,15 +176,20 @@ jobs:
          name: Upload ipa
          path: /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
 
-
+      - name: Download Android APK
+        uses: actions/download-artifact@v4
+        with:
+         name: apk
+         path: .
+        
       - name: Upload IPA to GitHub Release
         uses: ncipollo/release-action@v1
         with:
          artifacts: |
-           build/app/outputs/flutter-apk/app-release.apk
+          app-release.apk
            /Users/runner/work/flutter_flavor/flutter_flavor/build/ios/ipa/apps/sample_flavor_test.ipa
-         tag: v2.4.0
-         name: Release v2.4.0
+         tag: v2.4.2
+         name: Release v2.4.2
          token: ${{ secrets.GITHUB_TOKEN }}
          body: |
            - Added feature X
