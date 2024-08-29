@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
           ["primaryColor"],
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
+          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
