@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 14,
+                height: 15,
               ),
               Text(
                 FlavorConfig.instance.variables["description"],
